@@ -7,7 +7,7 @@
 #include <cassert>
 #include <rocrand/rocrand.h>
 
-#include <omp.h>
+//#include <omp.h>
 
 #include "useful_enum.h"
 

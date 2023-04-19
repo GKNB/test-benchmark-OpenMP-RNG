@@ -5,7 +5,7 @@
 #include <cassert>
 #include <random>
 
-#include <omp.h>
+//#include <omp.h>
 
 #include "useful_enum.h"
 

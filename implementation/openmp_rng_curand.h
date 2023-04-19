@@ -5,7 +5,7 @@
 #include <cassert>
 #include <curand.h>
 
-#include <omp.h>
+//#include <omp.h>
 
 #include "useful_enum.h"
 
