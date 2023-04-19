@@ -53,7 +53,7 @@ inline void _set_up_generator(curandGenerator_t &generator,
                               const generator_enum rng_type_enum,
                               const size_t offset, const size_t dimensions)
 {
-  double tt = -omp_get_wtime();
+//  double tt = -omp_get_wtime();
   curandRngType rng_type = get_rng_type(rng_type_enum);
   CURAND_CALL(curandCreateGenerator(&generator, rng_type));
 
@@ -65,8 +65,8 @@ inline void _set_up_generator(curandGenerator_t &generator,
 
   if(rng_type_enum != generator_enum::mtgp32 && rng_type_enum != generator_enum::mt19937)
     CURAND_CALL(curandSetGeneratorOffset(generator, offset)); 
-  tt += omp_get_wtime();
-  std::cout << "Time for setting up generator is " << tt * 1e3 << " ms" << std::endl;
+//  tt += omp_get_wtime();
+//  std::cout << "Time for setting up generator is " << tt * 1e3 << " ms" << std::endl;
 }
 
 //FIXME: Need to figure out if device sync is needed!!!!!
