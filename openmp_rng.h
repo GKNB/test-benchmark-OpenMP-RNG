@@ -2,11 +2,11 @@
 #define _OPENMP_RNG_IMPL
 
 //Options for _RNG_impl:
-//RNG_IMPL_BASIC             :not using any external libraries, only use std::random for CPU
-//RNG_IMPL_RANDOM123:        :using RANDOM123 library for CPU
-//RNG_IMPL_CURAND            :using CUDA CURAND library for NVIDIA GPU
-//RNG_IMPL_ROCRAND           :using HIP ROCRAND library for AMD GPU
-
+//RNG_IMPL_BASIC              :not using any external libraries, only use std::random for CPU
+//RNG_IMPL_RANDOM123:         :using RANDOM123 library for CPU
+//RNG_IMPL_CURAND             :using CUDA CURAND library for NVIDIA GPU
+//RNG_IMPL_ROCRAND            :using HIP ROCRAND library for AMD GPU
+//RNG_IMPL_MKL_C              :using Intel MKL C backend for Intel GPU
 
 //FIXME: Later need to find the best flag/macro to be used
 
@@ -22,6 +22,10 @@
 //Use hip version, make sure to link rocrand
 #define RNG_IMPL_ROCRAND
 
+#elif defined(ARCH_INTEL)
+//Use intel MKL C backend, make sure to link MKL
+#define RNG_IMPL_MKL_C
+
 #else
 //Default to std::random version (not parallized!)
 #define RNG_IMPL_BASIC
@@ -34,6 +38,8 @@
 #  include "implementation/openmp_rng_rocrand.h"
 #elif defined(RNG_IMPL_CURAND)
 #  include "implementation/openmp_rng_curand.h"
+#elif defined(RNG_IMPL_MKL_C)
+#  include "implementation/openmp_rng_mkl_c.h"
 #elif defined(RNG_IMPL_RANDOM123)
 #  include "implementation/openmp_rng_random123.h"
 #elif defined(RNG_IMPL_BASIC)
